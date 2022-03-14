@@ -1,0 +1,108 @@
+<h1 mat-dialog-title>{{ headerText }} Student Form</h1>
+<div mat-dialog-content>
+    <form [formGroup]="studentForm" *ngIf="facultiesArray.length; else noFaculty">
+        <mat-form-field appearance="fill">
+            <mat-label>Firstname</mat-label>
+            <input matInput formControlName="firstName">
+        </mat-form-field>
+        <div
+            *ngIf="studentForm.get('firstName').invalid && (studentForm.get('firstName').dirty || studentForm.get('firstName').touched)">
+            <div class="error_message" *ngIf="studentForm.get('firstName').errors.required">
+                Please enter your firstname.
+            </div>
+            <div class="error_message" *ngIf="studentForm.get('firstName').errors.minlength">
+                Firstname must be at least 2 characters long.
+            </div>
+            <div class="error_message" *ngIf="studentForm.get('firstName').errors.maxLength">
+                Your firstname is too long.
+            </div>
+            <div class="error_message" *ngIf="studentForm.get('firstName').errors.pattern">
+                Firstname is not right.
+            </div>
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Lastname</mat-label>
+            <input matInput formControlName="lastName">
+        </mat-form-field>
+        <div
+            *ngIf="studentForm.get('lastName').invalid && (studentForm.get('lastName').dirty || studentForm.get('lastName').touched)">
+            <div class="error_message" *ngIf="studentForm.get('lastName').errors.required">
+                Please enter your lastname.
+            </div>
+            <div class="error_message" *ngIf="studentForm.get('lastName').errors.minlength">
+                Lastname must be at least 2 characters long.
+            </div>
+            <div class="error_message" *ngIf="studentForm.get('lastName').errors.maxLength">
+                Your lastname is too long.
+            </div>
+            <div class="error_message" *ngIf="studentForm.get('lastName').errors.pattern">
+                Lastname is not right.
+            </div>
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Phone number</mat-label>
+            <input matInput formControlName="phone">
+        </mat-form-field>
+        <div
+            *ngIf="studentForm.get('phone').invalid && (studentForm.get('phone').dirty || studentForm.get('phone').touched)">
+            <div class="error_message" *ngIf="studentForm.get('phone').errors.required">
+                Please enter your phone number.
+            </div>
+            <div class="error_message" *ngIf="studentForm.get('phone').errors.pattern">
+                Phone number can not contain characters.
+            </div>
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="email">
+        </mat-form-field>
+        <div
+            *ngIf="studentForm.get('email').invalid && (studentForm.get('email').dirty || studentForm.get('email').touched)">
+            <div class="error_message" *ngIf="studentForm.get('email').errors.required">
+                Please enter your e-mail.
+            </div>
+            <div class="error_message" *ngIf="studentForm.get('email').errors.pattern">
+                Your e-mail is not correct.
+            </div>
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Faculty</mat-label>
+            <mat-select formControlName="faculty">
+                <mat-option *ngFor="let faculty of facultiesArray" (click)="sendId(faculty.id)"
+                    value="{{ faculty.facultyName }}">
+                    {{ faculty.facultyName }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" *ngIf="(facultiesArray.length && groupsDataName.length) || studentForm.get('faculty').invalid; else noGroup">
+            <mat-label>Group</mat-label>
+            <mat-select formControlName="group" [disabled]="studentForm.get('faculty').untouched ||
+                 studentForm.get('faculty').pristine || 
+                 studentForm.get('faculty').invalid">
+                <mat-option *ngFor="let data of groupsDataName" value="{{ data }}">
+                    {{ data }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <ng-template #noGroup >
+            <div class="error_message">
+                Selected faculty does not have groups
+                <br>
+                <a href="/group">Add now!</a>
+            </div>
+        </ng-template>
+    </form>
+    <ng-template #noFaculty>
+        Our university does not have faculties yet
+        <br>
+        If you want to add student you need to add faculty
+        <br>
+        <a href="/faculty">Add now!</a>
+    </ng-template>
+</div>
+<div mat-dialog-action [align]="'end'" *ngIf="facultiesArray.length">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 8px;" [disabled]="!this.studentForm.valid" mat-raised-button color="primary"
+        (click)="addStudent()">
+        {{ actionButton }} </button>
+</div>

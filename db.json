@@ -1,0 +1,47 @@
+{
+  "students": [
+    {
+      "firstName": "Կորյուն",
+      "lastName": "Ավետիսյան",
+      "phone": "055337768",
+      "email": "koryunavetisyan@mail.ru",
+      "faculty": "Ծրագրային ճարտարագիտություն",
+      "group": "019-1",
+      "id": 1
+    }
+  ],
+  "faculties": [
+    {
+      "facultyName": "Ծրագրային ճարտարագիտություն",
+      "groups": [
+        {
+          "name": "019-1",
+          "id": 1
+        },
+        {
+          "name": "019-2",
+          "id": 2
+        }
+      ],
+      "id": 1
+    },
+    {
+      "facultyName": "Կիրառական մաթեմատիկա",
+      "groups": [],
+      "id": 2
+    },
+    {
+      "facultyName": "Ֆիզիկա",
+      "groups": [],
+      "id": 3
+    },
+    {
+      "facultyName": "Օտար լեզու",
+      "groups": [],
+      "id": 4
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

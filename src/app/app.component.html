@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <div class="container">
+    <mat-toolbar-row>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>school</mat-icon>
+      </button>
+      <span>University of Armenia</span>
+      <span class="example-spacer"></span>
+      <div class="buttons_group">
+        <button mat-raised-button color="warn" routerLink="/student">Our students</button>
+        <button mat-raised-button color="warn" routerLink="/faculty">Our faculties</button>
+        <button mat-raised-button color="warn" routerLink="/group">Our groups</button>
+      </div>
+    </mat-toolbar-row>
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>

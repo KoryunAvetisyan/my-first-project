@@ -1,0 +1,38 @@
+<div class="container">
+    <div style="margin-top: 20px;">
+        <button mat-raised-button style="background-color: #48AE04; color: white;" (click)="openDialog()">
+            Add group <mat-icon>add_box</mat-icon>
+        </button>
+    </div>
+    <div style="margin-top: 20px;">
+        <mat-accordion *ngFor="let faculty of facultiesArray" style="margin: 10px;">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>{{ faculty.facultyName }}</mat-panel-title>
+                </mat-expansion-panel-header>
+                    <table *ngIf="faculty?.groups?.length; else notData" class="groupTable">
+                        <tr>
+                            <th>No.</th>
+                            <th>Group</th>
+                            <th>Edit/Delete</th>
+                          </tr>
+                        <tr *ngFor="let item of faculty.groups">
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>
+                                <button mat-icon-button class="text-success" (click)="editGroup(faculty, faculty.groups[item.id - 1])">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button class="text-danger" (click)="deleteGroup(faculty.id, item.id)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                    <ng-template #notData>
+                        <p>This faculty has no groups</p>
+                    </ng-template>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>

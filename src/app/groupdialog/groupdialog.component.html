@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>{{ headerText }} Group Form</h1>
+<div mat-dialog-content>
+    <form [formGroup]="groupForm" *ngIf="facultiesArray.length; else noFaculty">
+        <mat-form-field appearance="fill" *ngIf="actionButton == 'Save'; else elseBlock">
+            <mat-label>Faculty</mat-label>
+            <mat-select formControlName="faculty">
+                <mat-option *ngFor="let faculty of facultiesArray" value="{{ faculty.id }}">
+                    {{ faculty.facultyName }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <ng-template #elseBlock>
+            <p class="default_value"> Edit the group of {{ defaultValue | lowercase }} faculty </p>
+        </ng-template>
+        <mat-form-field appearance="fill">
+            <mat-label>Group name</mat-label>
+            <input matInput formControlName="groupName" #groupName>
+        </mat-form-field>
+        <div
+            *ngIf="groupForm.get('groupName').invalid && (groupForm.get('groupName').dirty || groupForm.get('groupName').touched)">
+            <div class="error_message" *ngIf="groupForm.get('groupName').errors.required">
+                Please enter group name.
+            </div>
+        </div>
+    </form>
+    <ng-template #noFaculty>
+        Our university does not have faculties yet
+        <br>
+        If you want to add group you need to add faculty
+        <br>
+        <a href="/faculty">Add now!</a>
+    </ng-template>
+</div>
+<div mat-dialog-action [align]="'end'" *ngIf="facultiesArray.length">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 8px;" [disabled]="!this.groupForm.valid" mat-raised-button color="primary" (click)="addGroup()">{{ actionButton }}</button>
+</div>
