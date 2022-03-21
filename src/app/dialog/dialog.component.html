@@ -79,8 +79,8 @@
             <mat-select formControlName="group" [disabled]="studentForm.get('faculty').untouched ||
                  studentForm.get('faculty').pristine || 
                  studentForm.get('faculty').invalid">
-                <mat-option *ngFor="let data of groupsDataName" value="{{ data }}">
-                    {{ data }}
+                <mat-option *ngFor="let data of groupsDataName" value="{{ data.name }}">
+                    {{ data.name }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -102,7 +102,16 @@
 </div>
 <div mat-dialog-action [align]="'end'" *ngIf="facultiesArray.length">
     <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-    <button style="margin-left: 8px;" [disabled]="!this.studentForm.valid" mat-raised-button color="primary"
+    <button style="margin-left: 8px;" [disabled]="!this.studentForm.valid || groupsDataName.length == 0" mat-raised-button color="primary"
         (click)="addStudent()">
         {{ actionButton }} </button>
 </div>
+
+
+<!-- || groupsDataName.length == 0 || studentForm.get('group').pristine || studentForm.get('group').invalid || studentForm.get('group').untouched -->
+
+<!-- <pre *ngIf="actionButton == 'Edit'">
+    {{ groupsDataName.length | json }}
+    {{ facultiesArray.length | json }}
+    {{ editData | json }} 
+</pre> -->

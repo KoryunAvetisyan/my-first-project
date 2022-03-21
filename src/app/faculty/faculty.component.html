@@ -21,9 +21,18 @@
                     <button mat-icon-button class="text-success" (click)="editFaculty(element)">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button class="text-danger" (click)="deleteFaculty(element.id)">
+                    <button mat-button [matMenuTriggerFor]="menu" mat-icon-button class="text-danger">
                         <mat-icon>delete</mat-icon>
                     </button>
+                    <mat-menu #menu="matMenu">
+                        <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                            <p style="font-size: 12px;">Are you sure?</p>
+                            <div style="display: flex; justify-content: space-between;">
+                                <button style="margin-right: 10px;" class="btn btn-danger" mat-raised-button>No</button>
+                                <button class="btn btn-success" mat-raised-button (click)="deleteFaculty(element.id)">Yes</button>
+                            </div>
+                        </div>
+                    </mat-menu>
                 </td>
             </ng-container>
 

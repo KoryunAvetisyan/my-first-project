@@ -21,6 +21,7 @@ import { GroupComponent } from './group/group.component';
 import { FacultydialogComponent } from './facultydialog/facultydialog.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { GroupdialogComponent } from './groupdialog/groupdialog.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { GroupdialogComponent } from './groupdialog/groupdialog.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

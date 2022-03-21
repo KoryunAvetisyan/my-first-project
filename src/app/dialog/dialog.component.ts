@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-dialog',
@@ -14,6 +15,8 @@ export class DialogComponent implements OnInit {
   headerText = 'Add';
   facultiesArray: any = [];
   groupsDataName: any = [];
+  currentFacultiesArray: any = [];
+  lengthOfcurrentFacultiesArray: number = 0;
   idForFilter: any;
   constructor(private formBuilder: FormBuilder, private api: ApiService, private dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public editData: any) { }
   ngOnInit(): void {
@@ -55,7 +58,7 @@ export class DialogComponent implements OnInit {
       this.studentForm.controls['faculty'].setValue(this.editData.faculty);
       this.studentForm.controls['group'].setValue(this.editData.group);
     }
-
+    
     this.api.getFaculty().subscribe(data => {
       this.facultiesArray = data;
     });
@@ -90,17 +93,19 @@ export class DialogComponent implements OnInit {
         })
     }
   }
-
+  
   sendId(id: any) {
     this.idForFilter = id;
     this.groupsDataName = [];
     this.facultiesArray.filter((faculty: any) => {
       return faculty.id == this.idForFilter;
     }).map((item: any) => {
-      item.groups.map((data: any) => {
-        this.groupsDataName.push(data.name);
-      });
-
+      this.currentFacultiesArray.push(item.facultyName);
+      this.lengthOfcurrentFacultiesArray++;
+      if(this.currentFacultiesArray.length > 1 && this.currentFacultiesArray[this.lengthOfcurrentFacultiesArray] != this.currentFacultiesArray[this.lengthOfcurrentFacultiesArray - 1] && !this.editData){        
+        this.studentForm.controls['group'].setValue('');
+      }
+      this.groupsDataName = item.groups;
     })
   }
 

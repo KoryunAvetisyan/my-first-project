@@ -1,18 +1,27 @@
 {
   "students": [
     {
-      "firstName": "Կորյուն",
-      "lastName": "Ավետիսյան",
+      "firstName": "Koryun",
+      "lastName": "Avetisyan",
       "phone": "055337768",
       "email": "koryunavetisyan@mail.ru",
-      "faculty": "Ծրագրային ճարտարագիտություն",
-      "group": "019-1",
+      "faculty": "Ծրագրային ճարարագիտություն",
+      "group": "019-2",
       "id": 1
+    },
+    {
+      "firstName": "fgh",
+      "lastName": "fgh",
+      "phone": "534545",
+      "email": "koryun@mail.ru",
+      "faculty": "Կիրառական մաթեմատիկա",
+      "group": "055-2",
+      "id": 2
     }
   ],
   "faculties": [
     {
-      "facultyName": "Ծրագրային ճարտարագիտություն",
+      "facultyName": "Ծրագրային ճարարագիտություն",
       "groups": [
         {
           "name": "019-1",
@@ -21,24 +30,32 @@
         {
           "name": "019-2",
           "id": 2
+        },
+        {
+          "name": "019-3",
+          "id": 3
         }
       ],
       "id": 1
     },
     {
       "facultyName": "Կիրառական մաթեմատիկա",
-      "groups": [],
+      "groups": [
+        {
+          "name": "055-1",
+          "id": 1
+        },
+        {
+          "name": "055-2",
+          "id": 2
+        }
+      ],
       "id": 2
     },
     {
-      "facultyName": "Ֆիզիկա",
+      "facultyName": "Պատմություն",
       "groups": [],
       "id": 3
-    },
-    {
-      "facultyName": "Օտար լեզու",
-      "groups": [],
-      "id": 4
     }
   ],
   "profile": {
